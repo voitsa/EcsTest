@@ -17,7 +17,6 @@ namespace CompositeRoot
         {
             Container.BindInstance(_gameData);
             Container.Bind<EcsWorld>().AsSingle();
-            Container.Bind<GameInitSystem>().AsSingle();
         }
     }
 }

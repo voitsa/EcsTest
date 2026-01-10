@@ -14,11 +14,9 @@ namespace Systems
 
         private readonly UnitInitConfig _playerInitConfig;
         private readonly UnitInitConfig _enemyInitConfig;
-
         private readonly TurretInitConfig _turretInitConfig;
-        private readonly WeaponInitConfig _turretWeaponInitConfig;
         private readonly PickUpsInitConfig _pickUpsInitConfig;
-        private readonly WeaponInitConfig _mainWeaponInitConfig;
+
         private WeaponBuilder _weaponBuilder;
         private TurretBuilder _turretBuilder;
         private PickUpBuilder _pickUpBuilder;
@@ -28,8 +26,6 @@ namespace Systems
             _playerInitConfig = gameData.PlayerInitConfig;
             _enemyInitConfig = gameData.EnemyInitConfig;
             _turretInitConfig = gameData.TurretInitConfig;
-            _turretWeaponInitConfig = gameData.TurretWeaponInitConfig;
-            _mainWeaponInitConfig = gameData.MainWeaponInitConfig;
             _pickUpsInitConfig = gameData.PickUpsInitConfig;
         }
 
