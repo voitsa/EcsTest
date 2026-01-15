@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e0e9589a324133a7a33ae1a231f3fa, type: 3}
+  m_Name: UI Config
+  m_EditorClassIdentifier: 
+  <EnemyHealthView>k__BackingField: {fileID: 2018714851028646941, guid: e5bd92d7564b4d045aa617b7bb325978,
+    type: 3}
+  <PlayerView>k__BackingField: {fileID: 7353291827002845585, guid: 0f2f71e2733bd8c41a2eeac20b7daa8c,
+    type: 3}
