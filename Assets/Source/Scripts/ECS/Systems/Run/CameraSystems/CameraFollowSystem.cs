@@ -18,8 +18,8 @@ namespace Systems
                 ref var target = ref _filter.Get2(index);
 
                 var targetPosition = target.transform.position;
-                var cameraPositionZ = camera.camera.transform.position.z;
-                camera.camera.transform.position = new Vector3(targetPosition.x, targetPosition.y, cameraPositionZ);
+                var cameraPositionY = camera.camera.transform.position.y;
+                camera.camera.transform.position = new Vector3(targetPosition.x, cameraPositionY, targetPosition.z);
             }
         }
     }
