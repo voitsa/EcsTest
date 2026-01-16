@@ -15,15 +15,16 @@ namespace Systems
 
         public void Build(PickUpsInitConfig initConfig, Vector3 spawnPoint)
         {
-            var pickUpSpawnPosition = spawnPoint +
-                                      new Vector3(Random.Range(-100f, 100f), Random.Range(-100f, 100f), 0f);
             var pickUpActor =
-                Object.Instantiate(initConfig.PickUpActor, pickUpSpawnPosition, Quaternion.identity);
+                Object.Instantiate(initConfig.PickUpActor, spawnPoint, Quaternion.identity);
             var pickUp = _world.NewEntity();
             pickUpActor.GetComponent<ColliderObserver>().Initialize(_world, pickUp);
 
-            ref var collisionObjectDestructionComponent = ref pickUp.Get<DestructionComponent>();
-            collisionObjectDestructionComponent.destroyObject = pickUpActor.gameObject;
+            ref var pickUpTagComponent = ref pickUp.Get<PickUpTagComponent>();
+            pickUpTagComponent.pickUp = pickUpActor.gameObject;
+
+            ref var scorePickUpComponent = ref pickUp.Get<ScorePickUpComponent>();
+            scorePickUpComponent.pickUpScore = initConfig.PickUpScoreValue;
         }
     }
 }
