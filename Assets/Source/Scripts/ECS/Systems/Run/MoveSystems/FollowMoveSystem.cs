@@ -8,7 +8,6 @@ namespace Systems
     public class FollowMoveSystem : IEcsRunSystem
     {
         private readonly EcsFilter<MovableComponent, FollowComponent> _filter;
-        private readonly float _stopDistance = 2f;
 
         public void Run()
         {
@@ -24,7 +23,7 @@ namespace Systems
 
                 var direction = (followComponent.target.position - movableComponent.transform.position).normalized;
                 var distance = Vector3.Distance(followComponent.target.position, movableComponent.transform.position);
-                var isMoving = distance > _stopDistance;
+                var isMoving = distance > followComponent.stopDistance;
 
                 if (isMoving)
                 {

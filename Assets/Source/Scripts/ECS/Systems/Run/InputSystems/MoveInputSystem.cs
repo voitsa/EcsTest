@@ -35,7 +35,7 @@ namespace Systems
             foreach (var input in _inputEventsFilter)
             {
                 ref var inputEvent = ref _inputEventsFilter.Get1(input);
-                inputEvent.direction = new Vector2(direction.x, direction.y);
+                inputEvent.direction = new Vector3(direction.x, 0f, direction.y);
             }
         }
     }

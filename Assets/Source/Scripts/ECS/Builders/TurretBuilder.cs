@@ -6,8 +6,8 @@ using ECS.Components.Movement;
 using EntityActors;
 using Leopotam.Ecs;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Utilitiy;
+
 namespace Systems
 {
     public class TurretBuilder : EcsBuilder
@@ -18,40 +18,40 @@ namespace Systems
 
         public TurretActor CreateTurret(TurretInitConfig turretInitConfig, Transform placeholder)
         {
-                var turretActor = Object.Instantiate(
-                    turretInitConfig.TurretPrefab,
-                    placeholder.transform.position,
-                    Quaternion.identity);
+            var turretActor = Object.Instantiate(
+                turretInitConfig.TurretPrefab,
+                placeholder.transform);
 
-                var turret = _world.NewEntity();
+            var turret = _world.NewEntity();
+            var selfTransform = turretActor.transform;
 
-                ref var trackerComponent = ref turret.Get<TrackerComponent>();
-                trackerComponent.searchRadius = turretInitConfig.TrackerRange;
-                trackerComponent.selfTeam = Teams.Player;
-                trackerComponent.selfTransform = turretActor.transform;
+            ref var trackerComponent = ref turret.Get<TrackerComponent>();
+            trackerComponent.searchRadius = turretInitConfig.TrackerRange;
+            trackerComponent.selfTeam = Teams.Player;
+            trackerComponent.selfTransform = selfTransform;
 
-                ref var rotatableComponent = ref turret.Get<RotatableComponent>();
+            ref var rotatableComponent = ref turret.Get<RotatableComponent>();
+            rotatableComponent.transform = selfTransform;
 
-                ref var detectionComponent = ref turret.Get<DetectionComponent>();
-                detectionComponent.angle = turretInitConfig.DetectAngle;
-                detectionComponent.radius = turretInitConfig.DetectRadius;
+            ref var detectionComponent = ref turret.Get<DetectionComponent>();
+            detectionComponent.angle = turretInitConfig.DetectAngle;
+            detectionComponent.radius = turretInitConfig.DetectRadius;
 
-                turret.Get<FollowComponent>();
+            turret.Get<FollowComponent>();
 
-                ref var turretComponent = ref turret.Get<TurretComponent>();
+            ref var turretComponent = ref turret.Get<TurretComponent>();
+            turretComponent.weapons = new List<EcsEntity>();
 
-                turretComponent.weapons = new List<EcsEntity>();
+            var weaponBuilder = new WeaponBuilder(_world);
 
-                var weaponBuilder = new WeaponBuilder(_world);
+            foreach (var position in turretActor.WeaponPositions)
+            {
+                var weapon = weaponBuilder.Build(turretInitConfig.WeaponInitConfig, selfTransform,
+                    position);
+                turretComponent.weapons.Add(weapon);
+            }
 
-                foreach (var position in turretActor.WeaponPositions)
-                {
-                    var weapon = weaponBuilder.Build(turretInitConfig.WeaponInitConfig, turretActor.transform,
-                        position);
-                    turretComponent.weapons.Add(weapon);
-                }
-
-                return turretActor;
+            return turretActor;
         }
     }
 }

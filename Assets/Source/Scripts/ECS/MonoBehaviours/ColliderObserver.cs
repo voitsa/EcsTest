@@ -19,7 +19,7 @@ namespace ECS.MonoBehaviours
 
         private void OnCollisionEnter(Collision other)
         {
-            if (_ecsWorld == null)
+            if (_ecsWorld == null && !EcsEntity.IsAlive())
                 return;
 
             var otherObserver = other.gameObject.GetComponent<ColliderObserver>();

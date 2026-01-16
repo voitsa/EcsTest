@@ -31,9 +31,13 @@ namespace Systems
             projectileComponent.projectile = _projectileActor.gameObject;
 
             ref var movableComponent = ref _projectileEntity.Get<MovableComponent>();
+            movableComponent.moveSpeed = weapon.ProjectileConfig.Speed;
+            movableComponent.transform = _projectileActor.transform;
 
             ref var damageInflictComponent = ref _projectileEntity.Get<DamageInflictComponent>();
             damageInflictComponent.value = weapon.damageValue;
+
+            _projectileEntity.Get<CollisionDamageAllowComponent>();
         }
     }
 }

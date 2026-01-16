@@ -1,6 +1,7 @@
 using ECS.Components;
 using ECS.Components.Detection;
 using Leopotam.Ecs;
+using UnityEngine;
 
 namespace Systems
 {
@@ -16,6 +17,9 @@ namespace Systems
                 ref var damage = ref _filter.Get2(index);
                 var entity = _filter.GetEntity(index);
 
+                health.currentValue -= damage.value;
+                health.currentValue = Mathf.Clamp(health.currentValue, health.minValue, health.maxValue);
+
                 if (health.currentValue <= health.minValue)
                 {
                     ref var destruction = ref entity.Get<DestructionComponent>();
@@ -25,8 +29,6 @@ namespace Systems
                     entity.Del<TargetableComponent>();
                     continue;
                 }
-
-                health.currentValue -= damage.value;
 
                 entity.Del<DamageReceiveComponent>();
             }

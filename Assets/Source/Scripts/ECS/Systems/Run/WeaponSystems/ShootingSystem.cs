@@ -8,7 +8,12 @@ namespace Systems
     public class ShootingSystem : IEcsRunSystem
     {
         private readonly EcsFilter<WeaponComponent, ShotComponent> _filter;
-        private EcsWorld _ecsWorld;
+        private readonly ProjectileBuilder _projectileBuilder;
+
+        public ShootingSystem(EcsWorld ecsWorld)
+        {
+            _projectileBuilder = new ProjectileBuilder(ecsWorld);
+        }
 
         public void Run()
         {
@@ -16,9 +21,7 @@ namespace Systems
             {
                 ref var weapon = ref _filter.Get1(index);
 
-                var projectileBuilder = new ProjectileBuilder(_ecsWorld);
-
-                projectileBuilder.Build(weapon);
+                _projectileBuilder.Build(weapon);
 
                 ref var entity = ref _filter.GetEntity(index);
                 entity.Del<ShotComponent>();

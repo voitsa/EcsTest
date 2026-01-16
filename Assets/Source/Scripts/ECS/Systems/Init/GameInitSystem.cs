@@ -1,56 +1,69 @@
 using Data;
-using ECS.Components.Input;
 using ECS.Data;
-using ECS.MonoBehaviours;
 using EntityActors;
 using Leopotam.Ecs;
 using UnityEngine;
+using Utility;
 
 namespace Systems
 {
-    public class GameInitSystem : IEcsInitSystem
+    public class GameInitSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly EcsWorld _world;
 
         private readonly UnitInitConfig _playerInitConfig;
         private readonly UnitInitConfig _enemyInitConfig;
         private readonly TurretInitConfig _turretInitConfig;
-        private readonly PickUpsInitConfig _pickUpsInitConfig;
+        private readonly UIData _uiData;
 
-        private WeaponBuilder _weaponBuilder;
+        private readonly float _spawnDelay;
+
         private TurretBuilder _turretBuilder;
-        private PickUpBuilder _pickUpBuilder;
+        private EnemyBuilder _enemBuilder;
+        private UnitActor _playerActor;
+        private float _timePassed;
+        private Camera _camera;
 
         public GameInitSystem(GameData gameData)
         {
             _playerInitConfig = gameData.PlayerInitConfig;
             _enemyInitConfig = gameData.EnemyInitConfig;
             _turretInitConfig = gameData.TurretInitConfig;
-            _pickUpsInitConfig = gameData.PickUpsInitConfig;
+            _uiData = gameData.UIData;
+            _spawnDelay = gameData.SpawnDelay;
         }
 
         public void Init()
         {
-            _weaponBuilder = new WeaponBuilder(_world);
-            _turretBuilder = new TurretBuilder(_world);
-            var playerBuilder = new PlayerBuilder(_world);
-            var pickUpBuilder = new PickUpBuilder(_world);
+            _playerActor = CreatePlayer(new PlayerBuilder(_world, _uiData.PlayerView));
+            _timePassed = 0f;
+            _camera = Camera.main;
+        }
 
-            var playerActor = CreatePlayer(playerBuilder);
-            var enemyBuilder = new EnemyBuilder(_world, playerActor.Transform);
+        public void Run()
+        {
+            _timePassed += Time.deltaTime;
 
-            for (int i = 0; i < 1; i++)
-            {
-                var enemySpawnPosition = new Vector3(Random.Range(-150f, 150f), 0f, Random.Range(-150f, 150f));
-                enemyBuilder.BuildUnit(_enemyInitConfig, enemySpawnPosition);
-            }
+            if (_timePassed < _spawnDelay)
+                return;
+
+            _timePassed = 0f;
+            var point = _camera.GetWorldBound().GetRandomPointOnBorder();
+            Debug.Log(point);
+            var position = new Vector3(point.x, 0f,  point.y);
+            SpawnEnemy(_playerActor, position);
+        }
+
+        private void SpawnEnemy(UnitActor playerActor, Vector3 position)
+        {
+            var enemyBuilder = new EnemyBuilder(_world, _uiData.EnemyHealthView, playerActor.Transform, 20f);
+            enemyBuilder.BuildUnit(_enemyInitConfig, position);
         }
 
         private UnitActor CreatePlayer(UnitBuilder builder)
         {
             var playerActor = builder.BuildUnit(_playerInitConfig, Vector3.zero);
-            _turretBuilder.CreateTurret(_turretInitConfig, playerActor.Transform);
-
+            new TurretBuilder(_world).CreateTurret(_turretInitConfig, playerActor.Transform);
             return playerActor;
         }
     }

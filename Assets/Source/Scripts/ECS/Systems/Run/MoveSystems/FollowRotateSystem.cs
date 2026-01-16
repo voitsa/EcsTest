@@ -6,14 +6,14 @@ namespace Systems
 {
     public class FollowRotateSystem: IEcsRunSystem
     {
-        private readonly EcsFilter<RotatableComponent, FollowComponent> _enemyFollowSystem;
+        private readonly EcsFilter<RotatableComponent, FollowComponent> _filter;
 
         public void Run()
         {
-            foreach (var entity in _enemyFollowSystem)
+            foreach (var entity in _filter)
             {
-                ref var followComponent = ref _enemyFollowSystem.Get2(entity);
-                ref var rotatableComponent = ref _enemyFollowSystem.Get1(entity);
+                ref var followComponent = ref _filter.Get2(entity);
+                ref var rotatableComponent = ref _filter.Get1(entity);
 
                 if (followComponent.target == null)
                 {
@@ -21,7 +21,7 @@ namespace Systems
                 }
 
                 var direction = (followComponent.target.position - rotatableComponent.transform.position).normalized;
-                rotatableComponent.transform.up = direction;
+                rotatableComponent.transform.forward = direction;
                 direction.z = 0;
             }
         }

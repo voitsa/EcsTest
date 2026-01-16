@@ -1,3 +1,4 @@
+using ECS;
 using ECS.Components;
 using ECS.Components.Detection;
 using ECS.Components.Input;
@@ -10,12 +11,17 @@ namespace Systems
 {
     public class PlayerBuilder : UnitBuilder
     {
-        public PlayerBuilder(EcsWorld world) : base(world)
+        private readonly PlayerView _playerViewPrefab;
+
+        public PlayerBuilder(EcsWorld world, PlayerView playerViewPrefab) : base(world)
         {
+            _playerViewPrefab = playerViewPrefab;
         }
 
         protected override void SetupActor(UnitActorBuildData unitActorBuildData)
         {
+            PlayerView _playerView = Object.Instantiate(_playerViewPrefab);
+
             var ecsEntity = unitActorBuildData.Entity;
             var unitActor = unitActorBuildData.UnitActor;
 
@@ -28,10 +34,17 @@ namespace Systems
             targetableComponent.transform = unitActor.transform;
             targetableComponent.team = Teams.Player;
 
+            ref var scoreViewComponent = ref ecsEntity.Get<ScoreViewComponent>();
+            scoreViewComponent.scoreView = _playerView.ScoreView;
+
+            ref var healthViewComponent = ref ecsEntity.Get<HealthViewComponent>();
+            healthViewComponent.healthView = _playerView.HealthView;
+
             ecsEntity.Get<PlayerTagComponent>();
             ecsEntity.Get<RotationInputEventComponent>();
             ecsEntity.Get<MoveInputEventComponent>();
             ecsEntity.Get<PlayerTagComponent>();
+            ecsEntity.Get<ScoreComponent>();
         }
     }
 }

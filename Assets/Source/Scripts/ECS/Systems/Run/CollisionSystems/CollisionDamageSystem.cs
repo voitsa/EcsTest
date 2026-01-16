@@ -5,7 +5,7 @@ namespace Systems
 {
     public class CollisionDamageSystem : IEcsRunSystem
     {
-        private EcsFilter<DamageInflictComponent, CollisionEnterComponent> _filter;
+        private EcsFilter<DamageInflictComponent, CollisionEnterComponent, CollisionDamageAllowComponent> _filter;
 
         public void Run()
         {
@@ -16,7 +16,7 @@ namespace Systems
 
                 var otherEntity = collisionComponent.other;
 
-                if (otherEntity.Has<HealthComponent>())
+                if (otherEntity.IsAlive() && otherEntity.Has<HealthComponent>())
                 {
                     ref var damageReceiveComponent = ref otherEntity.Get<DamageReceiveComponent>();
                     damageReceiveComponent.value = damageInflictComponent.value;
