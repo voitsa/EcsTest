@@ -22,6 +22,10 @@ namespace Systems
 
             var ecsEntity = unitActorBuildData.Entity;
             var unitActor = unitActorBuildData.UnitActor;
+            var actorGameObject = unitActor.gameObject;
+
+            ref var destructionComponent = ref ecsEntity.Get<DestructionComponent>();
+            destructionComponent.destroyObject = actorGameObject;
 
             ecsEntity.Get<CollisionDestructionComponent>();
 
@@ -40,7 +44,7 @@ namespace Systems
             ref var healthComponent = ref ecsEntity.Get<HealthComponent>();
             healthComponent.maxValue = unitInitConfig.HealthValue;
             healthComponent.currentValue = unitInitConfig.HealthValue;
-            healthComponent.unit = unitActor.gameObject;
+            healthComponent.unit = actorGameObject;
 
             SetupActor(unitActorBuildData);
 

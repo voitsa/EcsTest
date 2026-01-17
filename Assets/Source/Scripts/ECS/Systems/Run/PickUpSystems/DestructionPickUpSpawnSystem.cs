@@ -10,7 +10,7 @@ namespace ECS.Systems
 {
     public class DestructionPickUpSpawnSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PickUpSpawnerTagComponent, DestructionComponent> _filter;
+        private readonly EcsFilter<PickUpSpawnerTagComponent, DestructionEventComponent> _filter;
         private readonly float _minPercentProbability = 0f;
         private readonly float _maxPercentProbability = 101f;
         private readonly PickUpBuilder _pickUpBuilder;

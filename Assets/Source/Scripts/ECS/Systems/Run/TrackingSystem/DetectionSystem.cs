@@ -22,6 +22,13 @@ namespace Systems
                     continue;
                 }
 
+                if (trackerComponent.selfTransform == null)
+                {
+                    var entity = _filter.GetEntity(index);
+                    entity.Get<DestructionEventComponent>();
+                    continue;
+                }
+
                 var targetPosition = trackerComponent.targetTransform.position;
                 var selfPosition = trackerComponent.selfTransform.position;
                 var selfForward = trackerComponent.selfTransform.up;

@@ -9,7 +9,6 @@ namespace ECS.Components
         public ProjectileInitConfig ProjectileConfig;
         public Transform shootingPoint;
         public float shotDelay;
-        public float reloadingSpeed;
         public float damageValue;
     }
 }

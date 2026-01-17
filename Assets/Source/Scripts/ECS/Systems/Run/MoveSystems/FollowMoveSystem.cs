@@ -23,9 +23,9 @@ namespace Systems
 
                 var direction = (followComponent.target.position - movableComponent.transform.position).normalized;
                 var distance = Vector3.Distance(followComponent.target.position, movableComponent.transform.position);
-                var isMoving = distance > followComponent.stopDistance;
+                followComponent.distanceReached = distance <= followComponent.stopDistance;
 
-                if (isMoving)
+                if (!followComponent.distanceReached)
                 {
                     movableComponent.transform.position += direction * (Time.deltaTime * movableComponent.moveSpeed);
                 }

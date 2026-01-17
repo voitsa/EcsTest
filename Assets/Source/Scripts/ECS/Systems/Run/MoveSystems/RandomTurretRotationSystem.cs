@@ -18,13 +18,15 @@ namespace Systems
                 ref var followComponent = ref _filter.Get2(entity);
 
                 if (followComponent.target != null)
-                {
                     continue;
-                }
 
                 ref var rotatableComponent = ref _filter.Get1(entity);
                 var direction = Vector3.zero;
                 direction = direction.RandomNormalized(zeroY: true);
+
+                if (rotatableComponent.transform == null)
+                    continue;
+
                 rotatableComponent.transform.forward = direction;
             }
         }

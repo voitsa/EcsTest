@@ -6,7 +6,7 @@ namespace Systems
 {
     public class DestroySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<DestructionComponent> _filter;
+        private readonly EcsFilter<DestructionComponent, DestructionEventComponent> _filter;
 
         public void Run()
         {

@@ -15,7 +15,7 @@ namespace Systems
                 ref var followComponent = ref _filter.Get2(entity);
                 ref var rotatableComponent = ref _filter.Get1(entity);
 
-                if (followComponent.target == null)
+                if (followComponent.target == null || rotatableComponent.transform == null)
                 {
                     continue;
                 }

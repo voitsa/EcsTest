@@ -20,10 +20,11 @@ namespace Systems
 
         protected override void SetupActor(UnitActorBuildData unitActorBuildData)
         {
-            PlayerView _playerView = Object.Instantiate(_playerViewPrefab);
-
             var ecsEntity = unitActorBuildData.Entity;
             var unitActor = unitActorBuildData.UnitActor;
+
+            PlayerView _playerView = Object.Instantiate(_playerViewPrefab);
+            _playerView.HealthView.Init(ecsEntity.Get<HealthComponent>().maxValue);
 
             ref var cameraComponent = ref ecsEntity.Get<CameraComponent>();
             cameraComponent.camera = Camera.main;

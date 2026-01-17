@@ -20,11 +20,13 @@ namespace Systems
             var pickUp = _world.NewEntity();
             pickUpActor.GetComponent<ColliderObserver>().Initialize(_world, pickUp);
 
-            ref var pickUpTagComponent = ref pickUp.Get<PickUpTagComponent>();
-            pickUpTagComponent.pickUp = pickUpActor.gameObject;
+            ref var destructionComponent = ref pickUp.Get<DestructionComponent>();
+            destructionComponent.destroyObject = pickUpActor.gameObject;
 
             ref var scorePickUpComponent = ref pickUp.Get<ScorePickUpComponent>();
             scorePickUpComponent.pickUpScore = initConfig.PickUpScoreValue;
+
+            pickUp.Get<PickUpTagComponent>();
         }
     }
 }

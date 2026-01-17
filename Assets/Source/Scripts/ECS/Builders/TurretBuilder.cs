@@ -25,6 +25,9 @@ namespace Systems
             var turret = _world.NewEntity();
             var selfTransform = turretActor.transform;
 
+            ref var destructionComponent = ref turret.Get<DestructionComponent>();
+            destructionComponent.destroyObject = turretActor.gameObject;
+
             ref var trackerComponent = ref turret.Get<TrackerComponent>();
             trackerComponent.searchRadius = turretInitConfig.TrackerRange;
             trackerComponent.selfTeam = Teams.Player;

@@ -39,12 +39,16 @@ namespace Systems
             pickUpSpawnerTagComponent.spawnPoint = actorTransform;
 
             var healthView = Object.Instantiate(_enemyHealthViewPrefab, actorTransform);
+            healthView.Init(ecsEntity.Get<HealthComponent>().maxValue);
 
             ref var healthViewComponent = ref ecsEntity.Get<HealthViewComponent>();
             healthViewComponent.healthView = healthView;
 
             ref var damageInflictComponent = ref ecsEntity.Get<DamageInflictComponent>();
             damageInflictComponent.value = 20f;
+
+            ref var meleeWeaponComponent = ref ecsEntity.Get<MeleeWeaponComponent>();
+            meleeWeaponComponent.attackDelay = 0.5f;
         }
     }
 }

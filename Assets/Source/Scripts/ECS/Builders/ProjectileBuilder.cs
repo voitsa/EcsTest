@@ -27,6 +27,9 @@ namespace Systems
 
             _projectileEntity.Get<CollisionDestructionComponent>();
 
+            ref var destructionComponent = ref _projectileEntity.Get<DestructionComponent>();
+            destructionComponent.destroyObject = _projectileActor.gameObject;
+
             ref var projectileComponent = ref _projectileEntity.Get<ProjectileComponent>();
             projectileComponent.projectile = _projectileActor.gameObject;
 

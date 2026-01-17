@@ -22,9 +22,7 @@ namespace Systems
 
                 if (health.currentValue <= health.minValue)
                 {
-                    ref var destruction = ref entity.Get<DestructionComponent>();
-                    destruction.destroyObject = health.unit;
-
+                    entity.Get<DestructionEventComponent>();
                     entity.Del<FollowComponent>();
                     entity.Del<TargetableComponent>();
                     continue;

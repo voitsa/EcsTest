@@ -19,8 +19,7 @@ namespace Systems
                 if (otherEntity.IsAlive() && otherEntity.Has<PlayerTagComponent>())
                 {
                     ref var entity = ref _filter.GetEntity(index);
-                    ref var destructionComponent = ref entity.Get<DestructionComponent>();
-                    destructionComponent.destroyObject = pickUpTagComponent.pickUp;
+                    entity.Get<DestructionEventComponent>();
                 }
             }
         }

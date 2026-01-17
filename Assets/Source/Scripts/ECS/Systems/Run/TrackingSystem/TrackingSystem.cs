@@ -24,7 +24,7 @@ namespace Systems
                 {
                     ref var targetable = ref _targetableFilter.Get1(target);
 
-                    if (targetable.team == tracker.selfTeam)
+                    if (targetable.team == tracker.selfTeam || tracker.selfTransform == null)
                         continue;
 
                     var distance = Vector2.Distance(tracker.selfTransform.position,

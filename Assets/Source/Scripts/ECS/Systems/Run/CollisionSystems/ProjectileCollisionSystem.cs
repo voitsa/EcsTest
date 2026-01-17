@@ -15,8 +15,7 @@ namespace Systems
                 ref var projectile = ref _filter.Get2(i);
                 ref var entity = ref _filter.GetEntity(i);
 
-                ref var destruction = ref entity.Get<DestructionComponent>();
-                destruction.destroyObject = projectile.projectile;
+                entity.Get<DestructionEventComponent>();
             }
         }
     }
