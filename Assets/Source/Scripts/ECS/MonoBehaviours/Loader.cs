@@ -114,6 +114,7 @@ namespace ECS
             _fixedUpdateSystems.Add(new ProjectileCollisionSystem());
             _fixedUpdateSystems.Add(new DestructionPickUpSpawnSystem(_world, _gameData.PickUpsInitConfig));
             _fixedUpdateSystems.Add(new CollisionComponentDestructionSystem());
+            _fixedUpdateSystems.Add(new PoolDestroySystem());
             _fixedUpdateSystems.Add(new DestroySystem());
         }
 

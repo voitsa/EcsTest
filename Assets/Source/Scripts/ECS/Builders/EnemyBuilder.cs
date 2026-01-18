@@ -12,11 +12,11 @@ namespace Systems
     {
         private readonly Transform _playerTarget;
         private readonly EnemyHealthView _enemyHealthViewPrefab;
-        private readonly float _stopDistance;
+        private readonly EnemyData _enemyData;
 
-        public EnemyBuilder(EcsWorld world, EnemyHealthView enemyHealthViewPrefab, Transform playerTarget, float stopDistance) : base(world)
+        public EnemyBuilder(EcsWorld world, EnemyData enemyData, EnemyHealthView enemyHealthViewPrefab, Transform playerTarget) : base(world)
         {
-            _stopDistance = stopDistance;
+            _enemyData = enemyData;
             _playerTarget = playerTarget;
             _enemyHealthViewPrefab = enemyHealthViewPrefab;
         }
@@ -33,7 +33,7 @@ namespace Systems
 
             ref var followComponent = ref ecsEntity.Get<FollowComponent>();
             followComponent.target = _playerTarget;
-            followComponent.stopDistance = _stopDistance;
+            followComponent.stopDistance = _enemyData.StopDistance;
 
             ref var pickUpSpawnerTagComponent = ref ecsEntity.Get<PickUpSpawnerTagComponent>();
             pickUpSpawnerTagComponent.spawnPoint = actorTransform;
@@ -45,10 +45,10 @@ namespace Systems
             healthViewComponent.healthView = healthView;
 
             ref var damageInflictComponent = ref ecsEntity.Get<DamageInflictComponent>();
-            damageInflictComponent.value = 20f;
+            damageInflictComponent.value = _enemyData.DamageValue;
 
             ref var meleeWeaponComponent = ref ecsEntity.Get<MeleeWeaponComponent>();
-            meleeWeaponComponent.attackDelay = 0.5f;
+            meleeWeaponComponent.attackDelay = _enemyData.AttackDelay;
         }
     }
 }

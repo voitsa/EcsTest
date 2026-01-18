@@ -1,6 +1,5 @@
 using ECS.Components;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Systems
 {
@@ -12,9 +11,7 @@ namespace Systems
         {
             foreach (var i in _filter)
             {
-                ref var projectile = ref _filter.Get2(i);
                 ref var entity = ref _filter.GetEntity(i);
-
                 entity.Get<DestructionEventComponent>();
             }
         }
