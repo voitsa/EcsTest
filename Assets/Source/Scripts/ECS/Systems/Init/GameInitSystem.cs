@@ -1,4 +1,5 @@
 using Data;
+using ECS;
 using ECS.Data;
 using EntityActors;
 using Leopotam.Ecs;
@@ -10,32 +11,25 @@ namespace Systems
     public class GameInitSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly EcsWorld _world;
+        private readonly Loader _loader;
+        private readonly GameData _gameData;
 
-        private readonly UnitInitConfig _playerInitConfig;
-        private readonly UnitInitConfig _enemyInitConfig;
-        private readonly TurretInitConfig _turretInitConfig;
-        private readonly UIData _uiData;
-
-        private readonly float _spawnDelay;
-
-        private TurretBuilder _turretBuilder;
-        private EnemyBuilder _enemBuilder;
+        private GameBuilder _gameBuilder;
         private UnitActor _playerActor;
         private float _timePassed;
         private Camera _camera;
 
-        public GameInitSystem(GameData gameData)
+        public GameInitSystem(Loader loader, GameData gameData, EcsWorld world)
         {
-            _playerInitConfig = gameData.PlayerInitConfig;
-            _enemyInitConfig = gameData.EnemyInitConfig;
-            _turretInitConfig = gameData.TurretInitConfig;
-            _uiData = gameData.UIData;
-            _spawnDelay = gameData.SpawnDelay;
+            _loader = loader;
+            _gameData = gameData;
+            _world = world;
         }
 
         public void Init()
         {
-            _playerActor = CreatePlayer(new PlayerBuilder(_world, _uiData.PlayerView));
+            _playerActor = CreatePlayer(new PlayerBuilder(_world, _gameData.UIData.PlayerView));
+            new GameBuilder(_world).Build(_gameData.GameActorPrefab, _loader);
             _timePassed = 0f;
             _camera = Camera.main;
         }
@@ -44,7 +38,7 @@ namespace Systems
         {
             _timePassed += Time.deltaTime;
 
-            if (_timePassed < _spawnDelay)
+            if (_timePassed < _gameData.SpawnDelay)
                 return;
 
             _timePassed = 0f;
@@ -56,14 +50,14 @@ namespace Systems
 
         private void SpawnEnemy(UnitActor playerActor, Vector3 position)
         {
-            var enemyBuilder = new EnemyBuilder(_world, _uiData.EnemyHealthView, playerActor.Transform, 20f);
-            enemyBuilder.BuildUnit(_enemyInitConfig, position);
+            var enemyBuilder = new EnemyBuilder(_world, _gameData.UIData.EnemyHealthView, playerActor.Transform, 20f);
+            enemyBuilder.BuildUnit(_gameData.EnemyInitConfig, position);
         }
 
         private UnitActor CreatePlayer(UnitBuilder builder)
         {
-            var playerActor = builder.BuildUnit(_playerInitConfig, Vector3.zero);
-            new TurretBuilder(_world).CreateTurret(_turretInitConfig, playerActor.Transform);
+            var playerActor = builder.BuildUnit(_gameData.PlayerInitConfig, Vector3.zero);
+            new TurretBuilder(_world).CreateTurret(_gameData.TurretInitConfig, playerActor.Transform);
             return playerActor;
         }
     }

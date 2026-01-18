@@ -1,4 +1,3 @@
-using System;
 using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;

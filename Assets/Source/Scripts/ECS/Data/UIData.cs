@@ -7,5 +7,7 @@ namespace ECS.Data
     {
         [field: SerializeField] public EnemyHealthView EnemyHealthView {get; private set;}
         [field: SerializeField] public PlayerView PlayerView {get; private set;}
+
+        [field: SerializeField] public GameLostView GameLostView {get; private set;}
     }
 }

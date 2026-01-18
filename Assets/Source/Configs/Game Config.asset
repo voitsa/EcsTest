@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc5e55069d51354f80c66ffc6a1e5b4, type: 3}
   m_Name: Game Config
   m_EditorClassIdentifier: 
+  <GameActorPrefab>k__BackingField: {fileID: 8137845897581099268, guid: 6d5467ae4a0fc944b97e99a23cbd43d4,
+    type: 3}
   <EnemyInitConfig>k__BackingField: {fileID: 11400000, guid: 6d64609212b68b343a0ab6b9ad206547,
     type: 2}
   <PlayerInitConfig>k__BackingField: {fileID: 11400000, guid: 08d26a6821e58624eb99a218beba33b7,

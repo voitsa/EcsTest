@@ -1,4 +1,5 @@
 using Data;
+using EntityActors;
 using UnityEngine;
 
 namespace ECS.Data
@@ -6,6 +7,7 @@ namespace ECS.Data
     [CreateAssetMenu(menuName = "GameConfigs")]
     public class GameData : ScriptableObject
     {
+        [field: SerializeField] public GameActor GameActorPrefab { get; private set; }
         [field: SerializeField] public UnitInitConfig EnemyInitConfig { get; private set; }
         [field: SerializeField] public UnitInitConfig PlayerInitConfig { get; private set; }
         [field: SerializeField] public UIData UIData { get; private set; }
