@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 1077962480}
   - component: {fileID: 1077962479}
   - component: {fileID: 1077962482}
+  - component: {fileID: 1077962483}
   m_Layer: 0
   m_Name: BorderEast
   m_TagString: Untagged
@@ -780,6 +781,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1077962483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077962477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5db95028c1228459e5d2cdaf328d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1158527754
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,7 +824,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: d72f5d8eecb9a254fa540cef5c84e037, type: 2}
-  _loader: {fileID: 104450633}
 --- !u!114 &1158527756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,6 +916,7 @@ GameObject:
   - component: {fileID: 1640720381}
   - component: {fileID: 1640720380}
   - component: {fileID: 1640720383}
+  - component: {fileID: 1640720384}
   m_Layer: 0
   m_Name: BorderWest
   m_TagString: Untagged
@@ -1024,6 +1037,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1640720384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640720378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5db95028c1228459e5d2cdaf328d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136270665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1062,7 @@ GameObject:
   - component: {fileID: 2136270668}
   - component: {fileID: 2136270667}
   - component: {fileID: 2136270670}
+  - component: {fileID: 2136270671}
   m_Layer: 0
   m_Name: BorderSouth
   m_TagString: Untagged
@@ -1157,6 +1183,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2136270671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136270665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5db95028c1228459e5d2cdaf328d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2143549375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1208,7 @@ GameObject:
   - component: {fileID: 2143549378}
   - component: {fileID: 2143549377}
   - component: {fileID: 2143549380}
+  - component: {fileID: 2143549381}
   m_Layer: 0
   m_Name: BorderNorth
   m_TagString: Untagged
@@ -1290,6 +1329,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2143549381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143549375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5db95028c1228459e5d2cdaf328d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
