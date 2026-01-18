@@ -1,8 +1,9 @@
+using ECS.EntityActors;
 using UnityEngine;
 
 namespace EntityActors
 {
-    public class ProjectileActor : MonoBehaviour
+    public class ProjectileActor : PoolableObject
     {
     }
 }

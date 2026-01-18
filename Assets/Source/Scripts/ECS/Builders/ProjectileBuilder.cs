@@ -1,18 +1,15 @@
 using ECS.Components;
 using ECS.Components.Movement;
-using ECS.Data;
 using ECS.MonoBehaviours;
 using EntityActors;
 using Leopotam.Ecs;
-using UnityEngine;
-using Utilitiy;
+using Utility;
 
 namespace Systems
 {
     public class ProjectileBuilder : EcsBuilder
     {
-        private ProjectileActor _projectileActor;
-        private EcsEntity _projectileEntity;
+        private ObjectPool<ProjectileActor> _pool;
 
         public ProjectileBuilder(EcsWorld world) : base(world)
         {
@@ -20,27 +17,29 @@ namespace Systems
 
         public void Build(WeaponComponent weapon)
         {
-            _projectileActor =
-                Object.Instantiate(weapon.ProjectileConfig.ProjectilePrefab, weapon.shootingPoint.position, weapon.shootingPoint.rotation);
-            _projectileEntity = _world.NewEntity();
-            _projectileActor.GetComponent<ColliderObserver>().Initialize(_world, _projectileEntity);
+            if (_pool == null)
+                _pool = new ObjectPool<ProjectileActor>(weapon.projectileConfig.ProjectilePrefab);
 
-            _projectileEntity.Get<CollisionDestructionComponent>();
+            var projectileActor = _pool.Get(weapon.shootingPoint.position, weapon.shootingPoint.rotation);
+            var projectileEntity = _world.NewEntity();
+            projectileActor.GetComponent<ColliderObserver>().Initialize(_world, projectileEntity);
+            projectileActor.Initialize(_ => _pool.ReturnToPool(projectileActor));
+            projectileEntity.Get<CollisionDestructionComponent>();
 
-            ref var destructionComponent = ref _projectileEntity.Get<DestructionComponent>();
-            destructionComponent.destroyObject = _projectileActor.gameObject;
+            ref var destructionComponent = ref projectileEntity.Get<PoolDestructionComponent>();
+            destructionComponent.poolable = projectileActor;
 
-            ref var projectileComponent = ref _projectileEntity.Get<ProjectileComponent>();
-            projectileComponent.projectile = _projectileActor.gameObject;
+            ref var projectileComponent = ref projectileEntity.Get<ProjectileComponent>();
+            projectileComponent.projectile = projectileActor.gameObject;
 
-            ref var movableComponent = ref _projectileEntity.Get<MovableComponent>();
-            movableComponent.moveSpeed = weapon.ProjectileConfig.Speed;
-            movableComponent.transform = _projectileActor.transform;
+            ref var movableComponent = ref projectileEntity.Get<MovableComponent>();
+            movableComponent.moveSpeed = weapon.projectileConfig.Speed;
+            movableComponent.transform = projectileActor.transform;
 
-            ref var damageInflictComponent = ref _projectileEntity.Get<DamageInflictComponent>();
+            ref var damageInflictComponent = ref projectileEntity.Get<DamageInflictComponent>();
             damageInflictComponent.value = weapon.damageValue;
 
-            _projectileEntity.Get<CollisionDamageAllowComponent>();
+            projectileEntity.Get<CollisionDamageAllowComponent>();
         }
     }
 }

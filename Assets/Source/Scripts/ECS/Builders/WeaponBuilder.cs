@@ -19,7 +19,8 @@ namespace Systems
             var weapon = _world.NewEntity();
 
             ref var weaponComponent = ref weapon.Get<WeaponComponent>();
-            weaponComponent.ProjectileConfig = weaponInitConfig.ProjectileInitConfig;
+            weaponComponent.projectileConfig = weaponInitConfig.ProjectileInitConfig;
+            weaponComponent.projectileBuilder = new ProjectileBuilder(_world);
             weaponComponent.shotDelay = weaponInitConfig.ShotDelay;
             weaponComponent.shootingPoint = weaponActor.ShootPoint;
             weaponComponent.damageValue = weaponInitConfig.DamageValue;
