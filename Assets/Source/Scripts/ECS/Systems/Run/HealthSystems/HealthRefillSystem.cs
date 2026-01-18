@@ -1,9 +1,8 @@
 using ECS.Components;
-using ECS.Components.Detection;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class HealthRefillSystem : IEcsRunSystem
     {
@@ -13,19 +12,19 @@ namespace Systems
         {
             foreach (var index in _filter)
             {
-                ref var health = ref _filter.Get1(index);
-                ref var receive = ref _filter.Get2(index);
+                ref var healthComponent = ref _filter.Get1(index);
+                ref var healthReceiveComponent = ref _filter.Get2(index);
                 var entity = _filter.GetEntity(index);
 
-                if (health.currentValue <= health.minValue)
+                if (healthComponent.currentValue <= healthComponent.minValue)
                 {
                     entity.Del<FollowComponent>();
                     entity.Del<TargetableComponent>();
                     continue;
                 }
 
-                health.currentValue += receive.receiveAmount;
-                health.currentValue = Mathf.Clamp(health.currentValue, health.minValue, health.maxValue);
+                healthComponent.currentValue += healthReceiveComponent.receiveAmount;
+                healthComponent.currentValue = Mathf.Clamp(healthComponent.currentValue, healthComponent.minValue, healthComponent.maxValue);
 
                 entity.Del<DamageReceiveComponent>();
             }

@@ -2,7 +2,7 @@ using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace ECS.MonoBehaviours
+namespace ECS
 {
     public class ColliderObserver : MonoBehaviour
     {

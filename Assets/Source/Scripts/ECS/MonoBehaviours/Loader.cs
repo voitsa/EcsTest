@@ -1,9 +1,7 @@
-using ECS.Components;
 using ECS.Data;
 using ECS.Systems;
 using ECS.Systems.GameSystems;
 using Leopotam.Ecs;
-using Systems;
 using UnityEngine;
 using Zenject;
 

@@ -1,7 +1,7 @@
 using UnityEngine;
-using Utilitiy;
+using Utility;
 
-namespace ECS.Components.Detection
+namespace ECS.Components
 {
     public struct TrackerComponent
     {

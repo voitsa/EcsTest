@@ -1,9 +1,7 @@
-using System;
 using ECS.Components;
-using ECS.Components.Detection;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class TrackingFollowSystem : IEcsRunSystem
     {
@@ -11,10 +9,10 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var entity in _trackerFilter)
+            foreach (var index in _trackerFilter)
             {
-                ref var tracker = ref _trackerFilter.Get1(entity);
-                ref var follow = ref _trackerFilter.Get2(entity);
+                ref var tracker = ref _trackerFilter.Get1(index);
+                ref var follow = ref _trackerFilter.Get2(index);
 
                 follow.target = tracker.targetTransform;
             }

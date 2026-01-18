@@ -1,8 +1,7 @@
 using ECS.Components;
-using ECS.Components.Detection;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class HealthViewSystem : IEcsRunSystem
     {
@@ -12,10 +11,10 @@ namespace Systems
         {
             foreach (var index in _filter)
             {
-                ref var health = ref _filter.Get1(index);
-                ref var view = ref _filter.Get2(index);
+                ref var healthComponent = ref _filter.Get1(index);
+                ref var healthViewComponent = ref _filter.Get2(index);
 
-                view.healthView.SetHealth(health.currentValue);
+                healthViewComponent.healthView.SetHealth(healthComponent.currentValue);
             }
         }
     }

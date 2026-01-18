@@ -1,4 +1,4 @@
-namespace ECS.Components.Detection
+namespace ECS.Components
 {
     public struct DetectionComponent
     {

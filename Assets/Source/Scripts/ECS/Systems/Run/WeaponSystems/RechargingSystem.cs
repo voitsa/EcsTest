@@ -2,7 +2,7 @@ using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class RechargingSystem : IEcsRunSystem
     {
@@ -13,11 +13,11 @@ namespace Systems
         {
             foreach (var index in _filter)
             {
-                ref var rechgarge = ref _filter.Get1(index);
+                ref var rechargeComponent = ref _filter.Get1(index);
 
-                rechgarge.timeLeft += Time.deltaTime;
+                rechargeComponent.timeLeft += Time.deltaTime;
 
-                if(rechgarge.timeLeft >= rechgarge.rechargeDuration)
+                if(rechargeComponent.timeLeft >= rechargeComponent.rechargeDuration)
                     _filter.GetEntity(index).Del<RechargeComponent>();
             }
         }

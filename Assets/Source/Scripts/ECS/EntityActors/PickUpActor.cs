@@ -1,8 +1,4 @@
-using ECS.EntityActors;
-using UnityEngine;
-using Zenject;
-
-namespace EntityActors
+namespace ECS.EntityActors
 {
     public class PickUpActor : PoolableObject
     {

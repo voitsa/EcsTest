@@ -1,9 +1,8 @@
 using ECS.Components;
-using ECS.Components.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class ProjectileMoveSystem : IEcsRunSystem
     {
@@ -11,9 +10,9 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var entity in _projectileMoveFilter)
+            foreach (var index in _projectileMoveFilter)
             {
-                ref var movableComponent = ref _projectileMoveFilter.Get1(entity);
+                ref var movableComponent = ref _projectileMoveFilter.Get1(index);
 
                 var translation = Vector3.forward * Time.deltaTime * movableComponent.moveSpeed;
 

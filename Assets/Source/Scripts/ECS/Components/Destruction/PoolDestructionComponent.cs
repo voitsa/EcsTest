@@ -1,6 +1,6 @@
 using Utility;
 
-namespace ECS.Components
+namespace ECS
 {
     public struct PoolDestructionComponent
     {

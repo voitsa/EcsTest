@@ -1,12 +1,12 @@
-using ECS.Components.Input;
+using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class RotationInputSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<RotationInputEventComponent> _inputEventsFilter;
+        private readonly EcsFilter<RotationInputEventComponent> _filter;
 
         public void Run()
         {
@@ -14,10 +14,10 @@ namespace Systems
             var horizontal = (mousePosition.x / Screen.width) * 2 - 1;
             var vertical = (mousePosition.y / Screen.height) * 2 - 1;
 
-            foreach (var input in _inputEventsFilter)
+            foreach (var index in _filter)
             {
-                ref var inputEvent = ref _inputEventsFilter.Get1(input);
-                inputEvent.direction = new Vector3(horizontal, 0f, vertical);
+                ref var inputEventComponent = ref _filter.Get1(index);
+                inputEventComponent.direction = new Vector3(horizontal, 0f, vertical);
             }
         }
     }

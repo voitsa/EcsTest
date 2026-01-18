@@ -1,4 +1,4 @@
-using ECS.Components.Game;
+using ECS.Components;
 using Leopotam.Ecs;
 
 namespace ECS.Systems.GameSystems
@@ -11,8 +11,8 @@ namespace ECS.Systems.GameSystems
         {
             foreach (var index in _filter)
             {
-                ref var gameLostView = ref _filter.Get1(index);
-                gameLostView.gameLostView.Activate();
+                ref var gameLostViewComponent = ref _filter.Get1(index);
+                gameLostViewComponent.gameLostView.Activate();
             }
         }
     }

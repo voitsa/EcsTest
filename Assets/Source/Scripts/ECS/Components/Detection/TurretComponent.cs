@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Leopotam.Ecs;
 
-namespace ECS.Components.Detection
+namespace ECS.Components
 {
     public struct TurretComponent
     {

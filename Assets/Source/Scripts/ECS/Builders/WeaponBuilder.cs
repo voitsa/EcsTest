@@ -1,9 +1,9 @@
-using Data;
 using ECS.Components;
+using ECS.Data;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Builders
 {
     public class WeaponBuilder : EcsBuilder
     {
@@ -14,18 +14,18 @@ namespace Systems
         public EcsEntity Build(WeaponInitConfig weaponInitConfig, Transform container,
             Vector2 position)
         {
-            var weaponActor = Object.Instantiate(weaponInitConfig.WeaponActor, container);
-            weaponActor.transform.position = position;
-            var weapon = _world.NewEntity();
+            var actor = Object.Instantiate(weaponInitConfig.WeaponActor, container);
+            actor.transform.position = position;
+            var entity = _world.NewEntity();
 
-            ref var weaponComponent = ref weapon.Get<WeaponComponent>();
+            ref var weaponComponent = ref entity.Get<WeaponComponent>();
             weaponComponent.projectileConfig = weaponInitConfig.ProjectileInitConfig;
             weaponComponent.projectileBuilder = new ProjectileBuilder(_world);
             weaponComponent.shotDelay = weaponInitConfig.ShotDelay;
-            weaponComponent.shootingPoint = weaponActor.ShootPoint;
+            weaponComponent.shootingPoint = actor.ShootPoint;
             weaponComponent.damageValue = weaponInitConfig.DamageValue;
 
-            return weapon;
+            return entity;
         }
     }
 }

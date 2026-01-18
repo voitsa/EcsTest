@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ECS.Components.Movement
+namespace ECS.Components
 {
     public struct MovableComponent
     {

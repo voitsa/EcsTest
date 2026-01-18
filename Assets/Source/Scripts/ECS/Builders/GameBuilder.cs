@@ -1,11 +1,9 @@
-using ECS;
 using ECS.Components;
-using ECS.Components.Game;
-using EntityActors;
+using ECS.EntityActors;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Builders
 {
     public class GameBuilder : EcsBuilder
     {
@@ -15,18 +13,18 @@ namespace Systems
 
         public void Build(GameActor actorPrefab, Loader loader)
         {
-            var gameActor = Object.Instantiate(actorPrefab);
-            var game = _world.NewEntity();
+            var entity = _world.NewEntity();
+            var actor = Object.Instantiate(actorPrefab);
 
-            ref var gameComponent = ref game.Get<GameComponent>();
+            ref var gameComponent = ref entity.Get<GameComponent>();
             gameComponent.loader = loader;
 
-            ref var destructionComponent = ref game.Get<DestructionComponent>();
-            destructionComponent.destroyObject = gameActor.gameObject;
+            ref var destructionComponent = ref entity.Get<DestructionComponent>();
+            destructionComponent.destroyObject = actor.gameObject;
 
-            ref var gameLostViewComponent = ref game.Get<GameLostViewComponent>();
-            var gameLostView = gameActor.GetComponent<GameLostView>();
-            gameLostView.Init(game);
+            ref var gameLostViewComponent = ref entity.Get<GameLostViewComponent>();
+            var gameLostView = actor.GetComponent<GameLostView>();
+            gameLostView.Init(entity);
             gameLostViewComponent.gameLostView = gameLostView;
         }
     }

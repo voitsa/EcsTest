@@ -1,6 +1,6 @@
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Builders
 {
     public class EcsBuilder
     {

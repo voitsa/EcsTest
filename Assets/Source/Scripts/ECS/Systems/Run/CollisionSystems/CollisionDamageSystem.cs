@@ -1,7 +1,7 @@
 using ECS.Components;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class CollisionDamageSystem : IEcsRunSystem
     {

@@ -1,8 +1,7 @@
 using ECS.Components;
-using ECS.Components.Detection;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class AutofireWeaponSystem : IEcsRunSystem
     {
@@ -12,14 +11,14 @@ namespace Systems
         {
             foreach (var index in _filter)
             {
-                ref var turret = ref _filter.Get1(index);
+                ref var turretComponent = ref _filter.Get1(index);
 
-                foreach (var weapon in turret.weapons)
+                foreach (var entity in turretComponent.weapons)
                 {
-                    if (weapon.Has<RechargeComponent>())
+                    if (entity.Has<RechargeComponent>())
                         continue;
 
-                    weapon.Get<ShotComponent>();
+                    entity.Get<ShotComponent>();
                 }
             }
         }

@@ -1,5 +1,4 @@
-using Data;
-using EntityActors;
+using ECS.EntityActors;
 using UnityEngine;
 
 namespace ECS.Data

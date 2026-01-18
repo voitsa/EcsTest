@@ -1,7 +1,7 @@
-using EntityActors;
+using ECS.EntityActors;
 using UnityEngine;
 
-namespace Data
+namespace ECS.Data
 {
     [CreateAssetMenu(menuName = "PickUpsInitData")]
     public class PickUpsInitConfig : ScriptableObject

@@ -1,11 +1,9 @@
 using ECS.Components;
-using ECS.Components.Movement;
-using ECS.MonoBehaviours;
-using EntityActors;
+using ECS.EntityActors;
 using Leopotam.Ecs;
 using Utility;
 
-namespace Systems
+namespace ECS.Builders
 {
     public class ProjectileBuilder : EcsBuilder
     {
@@ -20,26 +18,24 @@ namespace Systems
             if (_pool == null)
                 _pool = new ObjectPool<ProjectileActor>(weapon.projectileConfig.ProjectilePrefab);
 
-            var projectileActor = _pool.Get(weapon.shootingPoint.position, weapon.shootingPoint.rotation);
-            var projectileEntity = _world.NewEntity();
-            projectileActor.GetComponent<ColliderObserver>().Initialize(_world, projectileEntity);
-            projectileActor.Initialize(_ => _pool.ReturnToPool(projectileActor));
-            projectileEntity.Get<CollisionDestructionComponent>();
+            var actor = _pool.Get(weapon.shootingPoint.position, weapon.shootingPoint.rotation);
+            var entity = _world.NewEntity();
+            actor.GetComponent<ColliderObserver>().Initialize(_world, entity);
+            actor.Initialize(_ => _pool.ReturnToPool(actor));
+            entity.Get<CollisionDestructionComponent>();
 
-            ref var destructionComponent = ref projectileEntity.Get<PoolDestructionComponent>();
-            destructionComponent.poolable = projectileActor;
+            ref var destructionComponent = ref entity.Get<PoolDestructionComponent>();
+            destructionComponent.poolable = actor;
 
-            ref var projectileComponent = ref projectileEntity.Get<ProjectileComponent>();
-            projectileComponent.projectile = projectileActor.gameObject;
-
-            ref var movableComponent = ref projectileEntity.Get<MovableComponent>();
+            ref var movableComponent = ref entity.Get<MovableComponent>();
             movableComponent.moveSpeed = weapon.projectileConfig.Speed;
-            movableComponent.transform = projectileActor.transform;
+            movableComponent.transform = actor.transform;
 
-            ref var damageInflictComponent = ref projectileEntity.Get<DamageInflictComponent>();
+            ref var damageInflictComponent = ref entity.Get<DamageInflictComponent>();
             damageInflictComponent.value = weapon.damageValue;
 
-            projectileEntity.Get<CollisionDamageAllowComponent>();
+            entity.Get<ProjectileComponent>();
+            entity.Get<CollisionDamageAllowComponent>();
         }
     }
 }

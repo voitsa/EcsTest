@@ -1,9 +1,8 @@
-using ECS.Components.Input;
+using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;
-using Screen = UnityEngine.Device.Screen;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class MoveInputSystem : IEcsRunSystem
     {
@@ -12,7 +11,7 @@ namespace Systems
         private const KeyCode LeftKey = KeyCode.A;
         private const KeyCode RightKey = KeyCode.D;
 
-        private readonly EcsFilter<MoveInputEventComponent> _inputEventsFilter;
+        private readonly EcsFilter<MoveInputEventComponent> _filter;
 
         public void Run()
         {
@@ -32,10 +31,10 @@ namespace Systems
 
             direction = direction.normalized;
 
-            foreach (var input in _inputEventsFilter)
+            foreach (var index in _filter)
             {
-                ref var inputEvent = ref _inputEventsFilter.Get1(input);
-                inputEvent.direction = new Vector3(direction.x, 0f, direction.y);
+                ref var moveInputEventComponent = ref _filter.Get1(index);
+                moveInputEventComponent.direction = new Vector3(direction.x, 0f, direction.y);
             }
         }
     }

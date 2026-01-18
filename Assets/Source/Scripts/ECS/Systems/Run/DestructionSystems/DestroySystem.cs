@@ -2,7 +2,7 @@ using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class DestroySystem : IEcsRunSystem
     {
@@ -10,12 +10,12 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var index in _filter)
             {
-                ref var objectDestructionComponent = ref _filter.Get1(i);
+                ref var objectDestructionComponent = ref _filter.Get1(index);
 
                 Object.Destroy(objectDestructionComponent.destroyObject);
-                _filter.GetEntity(i).Destroy();
+                _filter.GetEntity(index).Destroy();
             }
         }
     }

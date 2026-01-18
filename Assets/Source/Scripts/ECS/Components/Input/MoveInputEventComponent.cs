@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ECS.Components.Input
+namespace ECS.Components
 {
     public struct MoveInputEventComponent
     {

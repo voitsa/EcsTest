@@ -1,5 +1,4 @@
 using ECS.Components;
-using ECS.Components.Game;
 using Leopotam.Ecs;
 
 namespace ECS.Systems.GameSystems

@@ -1,7 +1,7 @@
 using ECS.Components;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class ProjectileCollisionSystem : IEcsRunSystem
     {
@@ -9,9 +9,9 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var index in _filter)
             {
-                ref var entity = ref _filter.GetEntity(i);
+                ref var entity = ref _filter.GetEntity(index);
                 entity.Get<DestructionEventComponent>();
             }
         }

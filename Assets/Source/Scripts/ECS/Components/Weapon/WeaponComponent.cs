@@ -1,6 +1,5 @@
+using ECS.Builders;
 using ECS.Data;
-using EntityActors;
-using Systems;
 using UnityEngine;
 
 namespace ECS.Components

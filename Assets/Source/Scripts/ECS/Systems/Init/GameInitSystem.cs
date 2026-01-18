@@ -1,11 +1,11 @@
-using ECS;
+using ECS.Builders;
 using ECS.Data;
-using EntityActors;
+using ECS.EntityActors;
 using Leopotam.Ecs;
 using UnityEngine;
 using Utility;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class GameInitSystem : IEcsInitSystem, IEcsRunSystem
     {

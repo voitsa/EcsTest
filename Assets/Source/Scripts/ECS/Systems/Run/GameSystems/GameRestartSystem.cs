@@ -1,5 +1,4 @@
 using ECS.Components;
-using ECS.Components.Game;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -20,12 +19,12 @@ namespace ECS.Systems.GameSystems
 
                 foreach (var destructionIndex in _destructionFilter)
                 {
-                    ref var destruction = ref _destructionFilter.Get1(destructionIndex);
-                    Object.Destroy(destruction.destroyObject);
+                    ref var destructionComponent = ref _destructionFilter.Get1(destructionIndex);
+                    Object.Destroy(destructionComponent.destroyObject);
                 }
 
-                ref var game = ref _filter.Get1(index);
-                game.loader.Restart();
+                ref var gameComponent = ref _filter.Get1(index);
+                gameComponent.loader.Restart();
             }
         }
     }

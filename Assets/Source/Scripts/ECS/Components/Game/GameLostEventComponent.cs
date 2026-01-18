@@ -1,4 +1,4 @@
-namespace ECS.Components.Game
+namespace ECS.Components
 {
     public struct GameLostEventComponent
     {

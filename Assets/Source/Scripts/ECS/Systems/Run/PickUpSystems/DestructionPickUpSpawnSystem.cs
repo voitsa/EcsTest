@@ -1,9 +1,7 @@
-using System;
-using Data;
+using ECS.Builders;
 using ECS.Components;
+using ECS.Data;
 using Leopotam.Ecs;
-using Systems;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace ECS.Systems

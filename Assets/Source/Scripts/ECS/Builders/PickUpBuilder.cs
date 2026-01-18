@@ -1,12 +1,11 @@
-using Data;
 using ECS.Components;
-using ECS.MonoBehaviours;
-using EntityActors;
+using ECS.Data;
+using ECS.EntityActors;
 using Leopotam.Ecs;
 using UnityEngine;
 using Utility;
 
-namespace Systems
+namespace ECS.Builders
 {
     public class PickUpBuilder : EcsBuilder
     {
@@ -21,18 +20,18 @@ namespace Systems
             if (_pool == null)
                 _pool = new ObjectPool<PickUpActor>(initConfig.PickUpActor);
 
-            var pickUpActor = _pool.Get(spawnPoint, Quaternion.identity);
-            pickUpActor.Initialize(_ => _pool.ReturnToPool(pickUpActor));
-            var pickUp = _world.NewEntity();
-            pickUpActor.GetComponent<ColliderObserver>().Initialize(_world, pickUp);
+            var actor = _pool.Get(spawnPoint, Quaternion.identity);
+            actor.Initialize(_ => _pool.ReturnToPool(actor));
+            var entity = _world.NewEntity();
+            actor.GetComponent<ColliderObserver>().Initialize(_world, entity);
 
-            ref var destructionComponent = ref pickUp.Get<PoolDestructionComponent>();
-            destructionComponent.poolable = pickUpActor;
+            ref var destructionComponent = ref entity.Get<PoolDestructionComponent>();
+            destructionComponent.poolable = actor;
 
-            ref var scorePickUpComponent = ref pickUp.Get<ScorePickUpComponent>();
+            ref var scorePickUpComponent = ref entity.Get<ScorePickUpComponent>();
             scorePickUpComponent.pickUpScore = initConfig.PickUpScoreValue;
 
-            pickUp.Get<PickUpTagComponent>();
+            entity.Get<PickUpTagComponent>();
         }
     }
 }

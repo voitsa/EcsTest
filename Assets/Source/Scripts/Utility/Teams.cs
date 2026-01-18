@@ -1,4 +1,4 @@
-namespace Utilitiy
+namespace Utility
 {
     public enum Teams
     {

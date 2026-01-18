@@ -1,9 +1,8 @@
-using ECS.Components.Input;
-using ECS.Components.Movement;
+using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class PlayerMoveSystem : IEcsRunSystem
     {
@@ -11,10 +10,10 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var entity in _playerMoveFilter)
+            foreach (var index in _playerMoveFilter)
             {
-                ref var movableComponent = ref _playerMoveFilter.Get1(entity);
-                ref var inputComponent = ref _playerMoveFilter.Get2(entity);
+                ref var movableComponent = ref _playerMoveFilter.Get1(index);
+                ref var inputComponent = ref _playerMoveFilter.Get2(index);
 
                 movableComponent.transform.Translate(inputComponent.direction *
                                                      Time.deltaTime * movableComponent.moveSpeed, Space.Self);

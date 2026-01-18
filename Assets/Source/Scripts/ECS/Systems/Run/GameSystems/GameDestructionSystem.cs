@@ -1,5 +1,4 @@
 using ECS.Components;
-using ECS.Components.Game;
 using Leopotam.Ecs;
 
 namespace ECS.Systems.GameSystems
@@ -15,8 +14,8 @@ namespace ECS.Systems.GameSystems
                 ref var entity = ref _filter.GetEntity(index);
                 entity.Del<GameLostEventComponent>();
 
-                ref var game = ref _filter.Get1(index);
-                game.loader.Stop();
+                ref var gameComponent = ref _filter.Get1(index);
+                gameComponent.loader.Stop();
             }
         }
     }

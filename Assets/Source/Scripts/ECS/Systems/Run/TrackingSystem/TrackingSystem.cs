@@ -1,9 +1,8 @@
 using ECS.Components;
-using ECS.Components.Detection;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class TrackingSystem : IEcsRunSystem
     {
@@ -12,9 +11,9 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var entity in _trackerFilter)
+            foreach (var index in _trackerFilter)
             {
-                ref var tracker = ref _trackerFilter.Get1(entity);
+                ref var tracker = ref _trackerFilter.Get1(index);
                 Transform closestTarget = null;
                 float minDistance = tracker.searchRadius;
 

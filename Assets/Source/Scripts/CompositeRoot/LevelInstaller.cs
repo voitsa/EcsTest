@@ -1,8 +1,4 @@
-using Data;
-using ECS;
 using ECS.Data;
-using Leopotam.Ecs;
-using Systems;
 using UnityEngine;
 using Zenject;
 

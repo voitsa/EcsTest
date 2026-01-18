@@ -1,8 +1,7 @@
 using ECS.Components;
-using ECS.Components.Movement;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class FollowRotateSystem: IEcsRunSystem
     {
@@ -10,10 +9,10 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var entity in _filter)
+            foreach (var index in _filter)
             {
-                ref var followComponent = ref _filter.Get2(entity);
-                ref var rotatableComponent = ref _filter.Get1(entity);
+                ref var followComponent = ref _filter.Get2(index);
+                ref var rotatableComponent = ref _filter.Get1(index);
 
                 if (followComponent.target == null || rotatableComponent.transform == null)
                 {

@@ -1,11 +1,9 @@
 using ECS.Components;
-using ECS.Components.Detection;
-using ECS.Components.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
 using Utility;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class RandomTurretRotationSystem : IEcsRunSystem
     {
@@ -13,14 +11,14 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var entity in _filter)
+            foreach (var index in _filter)
             {
-                ref var followComponent = ref _filter.Get2(entity);
+                ref var followComponent = ref _filter.Get2(index);
 
                 if (followComponent.target != null)
                     continue;
 
-                ref var rotatableComponent = ref _filter.Get1(entity);
+                ref var rotatableComponent = ref _filter.Get1(index);
                 var direction = Vector3.zero;
                 direction = direction.RandomNormalized(zeroY: true);
 

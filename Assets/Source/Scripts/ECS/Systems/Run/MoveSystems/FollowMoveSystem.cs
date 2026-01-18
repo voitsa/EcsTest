@@ -1,9 +1,8 @@
 using ECS.Components;
-using ECS.Components.Movement;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class FollowMoveSystem : IEcsRunSystem
     {

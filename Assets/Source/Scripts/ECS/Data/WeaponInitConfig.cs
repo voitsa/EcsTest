@@ -1,8 +1,7 @@
-using ECS.Data;
-using EntityActors;
+using ECS.EntityActors;
 using UnityEngine;
 
-namespace Data
+namespace ECS.Data
 {
     [CreateAssetMenu(menuName = "WeaponInitData")]
     public class WeaponInitConfig : ScriptableObject

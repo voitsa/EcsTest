@@ -1,9 +1,8 @@
 using ECS.Components;
-using ECS.Components.Detection;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class HealthDamageSystem : IEcsRunSystem
     {
@@ -13,14 +12,14 @@ namespace Systems
         {
             foreach (var index in _filter)
             {
-                ref var health = ref _filter.Get1(index);
-                ref var damage = ref _filter.Get2(index);
+                ref var healthComponent = ref _filter.Get1(index);
+                ref var damageReceiveComponent = ref _filter.Get2(index);
                 var entity = _filter.GetEntity(index);
 
-                health.currentValue -= damage.value;
-                health.currentValue = Mathf.Clamp(health.currentValue, health.minValue, health.maxValue);
+                healthComponent.currentValue -= damageReceiveComponent.value;
+                healthComponent.currentValue = Mathf.Clamp(healthComponent.currentValue, healthComponent.minValue, healthComponent.maxValue);
 
-                if (health.currentValue <= health.minValue)
+                if (healthComponent.currentValue <= healthComponent.minValue)
                 {
                     entity.Get<DestructionEventComponent>();
                     entity.Del<FollowComponent>();

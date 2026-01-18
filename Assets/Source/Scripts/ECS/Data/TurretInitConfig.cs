@@ -1,7 +1,7 @@
-using EntityActors;
+using ECS.EntityActors;
 using UnityEngine;
 
-namespace Data
+namespace ECS.Data
 {
     [CreateAssetMenu(menuName = "TurretInitData")]
     public class TurretInitConfig : ScriptableObject

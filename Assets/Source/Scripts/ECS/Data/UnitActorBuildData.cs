@@ -1,4 +1,4 @@
-using EntityActors;
+using ECS.EntityActors;
 using Leopotam.Ecs;
 
 namespace ECS.Data

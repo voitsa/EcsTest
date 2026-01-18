@@ -1,12 +1,10 @@
 using ECS.Components;
-using ECS.Components.Movement;
 using ECS.Data;
-using ECS.MonoBehaviours;
-using EntityActors;
+using ECS.EntityActors;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Systems
+namespace ECS.Builders
 {
     public abstract class UnitBuilder : EcsBuilder
     {
@@ -20,31 +18,30 @@ namespace Systems
             unitActorBuildData.UnitActor = Object.Instantiate(unitInitConfig.UnitPrefab, spawnPoint, Quaternion.identity);
             unitActorBuildData.Entity = _world.NewEntity();
 
-            var ecsEntity = unitActorBuildData.Entity;
-            var unitActor = unitActorBuildData.UnitActor;
-            var actorGameObject = unitActor.gameObject;
+            var entity = unitActorBuildData.Entity;
+            var actor = unitActorBuildData.UnitActor;
+            var actorGameObject = actor.gameObject;
 
-            ref var destructionComponent = ref ecsEntity.Get<DestructionComponent>();
+            ref var destructionComponent = ref entity.Get<DestructionComponent>();
             destructionComponent.destroyObject = actorGameObject;
 
-            ecsEntity.Get<CollisionDestructionComponent>();
+            entity.Get<CollisionDestructionComponent>();
 
-            var colliderObserver = unitActor.GetComponent<ColliderObserver>();
-            colliderObserver.Initialize(_world, ecsEntity);
+            var colliderObserver = actor.GetComponent<ColliderObserver>();
+            colliderObserver.Initialize(_world, entity);
 
-            var transform = unitActor.transform;
+            var transform = actor.transform;
 
-            ref var movableComponent = ref ecsEntity.Get<MovableComponent>();
-            movableComponent.transform = unitActor.transform;
+            ref var movableComponent = ref entity.Get<MovableComponent>();
+            movableComponent.transform = actor.transform;
             movableComponent.moveSpeed = unitInitConfig.DefaultSpeed;
 
-            ref var rotatableComponent = ref ecsEntity.Get<RotatableComponent>();
+            ref var rotatableComponent = ref entity.Get<RotatableComponent>();
             rotatableComponent.transform = transform;
 
-            ref var healthComponent = ref ecsEntity.Get<HealthComponent>();
+            ref var healthComponent = ref entity.Get<HealthComponent>();
             healthComponent.maxValue = unitInitConfig.HealthValue;
             healthComponent.currentValue = unitInitConfig.HealthValue;
-            healthComponent.unit = actorGameObject;
 
             SetupActor(unitActorBuildData);
 

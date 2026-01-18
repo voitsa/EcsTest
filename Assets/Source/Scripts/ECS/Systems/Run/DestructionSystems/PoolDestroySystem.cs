@@ -1,7 +1,6 @@
-using ECS.Components;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class PoolDestroySystem : IEcsRunSystem
     {
@@ -9,11 +8,11 @@ namespace Systems
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var index in _filter)
             {
-                ref var destruction = ref _filter.Get1(i);
-                destruction.poolable.ReturnToPool();
-                _filter.GetEntity(i).Destroy();
+                ref var destructionComponent = ref _filter.Get1(index);
+                destructionComponent.poolable.ReturnToPool();
+                _filter.GetEntity(index).Destroy();
             }
         }
     }

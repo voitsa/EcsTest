@@ -1,4 +1,4 @@
-namespace ECS.Components
+namespace ECS
 {
     public struct DestructionEventComponent
     {

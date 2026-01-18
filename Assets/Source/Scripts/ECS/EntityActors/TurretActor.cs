@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EntityActors
+namespace ECS.EntityActors
 {
     public class TurretActor : MonoBehaviour
     {

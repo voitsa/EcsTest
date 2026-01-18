@@ -1,5 +1,4 @@
-using System;
-using ECS.Components.Game;
+using ECS.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.UI;

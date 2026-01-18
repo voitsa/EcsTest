@@ -1,7 +1,7 @@
 using ECS.Components;
 using Leopotam.Ecs;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class PickUpCollisionSystem : IEcsRunSystem
     {
@@ -11,7 +11,6 @@ namespace Systems
         {
             foreach (var index in _filter)
             {
-                ref var pickUpTagComponent = ref _filter.Get1(index);
                 ref var collisionComponent = ref _filter.Get2(index);
 
                 var otherEntity = collisionComponent.other;

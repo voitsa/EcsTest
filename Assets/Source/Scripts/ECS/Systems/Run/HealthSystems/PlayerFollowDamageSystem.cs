@@ -1,9 +1,7 @@
 using ECS.Components;
-using ECS.Components.Detection;
 using Leopotam.Ecs;
-using UnityEngine;
 
-namespace Systems
+namespace ECS.Systems
 {
     public class PlayerFollowDamageSystem : IEcsRunSystem
     {

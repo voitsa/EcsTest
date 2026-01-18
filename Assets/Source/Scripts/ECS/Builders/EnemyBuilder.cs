@@ -1,12 +1,10 @@
-using ECS;
 using ECS.Components;
-using ECS.Components.Detection;
 using ECS.Data;
 using Leopotam.Ecs;
 using UnityEngine;
-using Utilitiy;
+using Utility;
 
-namespace Systems
+namespace ECS.Builders
 {
     public class EnemyBuilder : UnitBuilder
     {
@@ -23,31 +21,31 @@ namespace Systems
 
         protected override void SetupActor(UnitActorBuildData unitActorBuildData)
         {
-            var ecsEntity = unitActorBuildData.Entity;
-            var unitActor = unitActorBuildData.UnitActor;
-            var actorTransform = unitActor.transform;
+            var entity = unitActorBuildData.Entity;
+            var actor = unitActorBuildData.UnitActor;
+            var actorTransform = actor.transform;
 
-            ref var targetableComponent = ref ecsEntity.Get<TargetableComponent>();
+            ref var targetableComponent = ref entity.Get<TargetableComponent>();
             targetableComponent.transform = actorTransform;
             targetableComponent.team = Teams.Enemy;
 
-            ref var followComponent = ref ecsEntity.Get<FollowComponent>();
+            ref var followComponent = ref entity.Get<FollowComponent>();
             followComponent.target = _playerTarget;
             followComponent.stopDistance = _enemyData.StopDistance;
 
-            ref var pickUpSpawnerTagComponent = ref ecsEntity.Get<PickUpSpawnerTagComponent>();
+            ref var pickUpSpawnerTagComponent = ref entity.Get<PickUpSpawnerTagComponent>();
             pickUpSpawnerTagComponent.spawnPoint = actorTransform;
 
             var healthView = Object.Instantiate(_enemyHealthViewPrefab, actorTransform);
-            healthView.Init(ecsEntity.Get<HealthComponent>().maxValue);
+            healthView.Init(entity.Get<HealthComponent>().maxValue);
 
-            ref var healthViewComponent = ref ecsEntity.Get<HealthViewComponent>();
+            ref var healthViewComponent = ref entity.Get<HealthViewComponent>();
             healthViewComponent.healthView = healthView;
 
-            ref var damageInflictComponent = ref ecsEntity.Get<DamageInflictComponent>();
+            ref var damageInflictComponent = ref entity.Get<DamageInflictComponent>();
             damageInflictComponent.value = _enemyData.DamageValue;
 
-            ref var meleeWeaponComponent = ref ecsEntity.Get<MeleeWeaponComponent>();
+            ref var meleeWeaponComponent = ref entity.Get<MeleeWeaponComponent>();
             meleeWeaponComponent.attackDelay = _enemyData.AttackDelay;
         }
     }
