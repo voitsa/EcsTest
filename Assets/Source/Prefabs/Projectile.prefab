@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8784998239274015119}
   - component: {fileID: 4436557294590046074}
   - component: {fileID: 3231396864018669094}
-  - component: {fileID: 8290243430021002141}
   - component: {fileID: 1494967665141747111}
   - component: {fileID: 8140192053793201618}
+  - component: {fileID: 871831007005086464}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -62,6 +62,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -108,18 +111,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8290243430021002141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457419537027858472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c7c816d9ccdae44eb14019c455c685d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1494967665141747111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +150,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &871831007005086464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457419537027858472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cb26437ef97304980a438d5a7ea87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

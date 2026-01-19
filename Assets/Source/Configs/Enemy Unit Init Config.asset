@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 358d7590ee27e42489faa71273463312, type: 3}
+  m_Script: {fileID: 11500000, guid: 027822434736a884a8a0e8e15d4b263d, type: 3}
   m_Name: Enemy Unit Init Config
   m_EditorClassIdentifier: 
-  <UnitPrefab>k__BackingField: {fileID: 2456265927645941771, guid: e183c468c5d5744409904d904e765203,
+  <UnitPrefab>k__BackingField: {fileID: 4328416594341540268, guid: e183c468c5d5744409904d904e765203,
     type: 3}
   <DefaultSpeed>k__BackingField: 7
   <HealthValue>k__BackingField: 100

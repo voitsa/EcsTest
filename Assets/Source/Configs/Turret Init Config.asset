@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7025417cc4597842a1e72fbd1bc6bf4, type: 3}
+  m_Script: {fileID: 11500000, guid: 65c9ef372666ea84a82116ea31044c4f, type: 3}
   m_Name: Turret Init Config
   m_EditorClassIdentifier: 
-  <TurretPrefab>k__BackingField: {fileID: 1962691494147085990, guid: 30ce3df3298e15449b1ddc851c3516d0,
+  <TurretPrefab>k__BackingField: {fileID: 5096890224282108393, guid: 30ce3df3298e15449b1ddc851c3516d0,
     type: 3}
   <WeaponInitConfig>k__BackingField: {fileID: 11400000, guid: 1d17ea50a8ddf0a4f8b8deec42beb1b0,
     type: 2}
-  <TrackerRange>k__BackingField: 50
+  <TrackerRange>k__BackingField: 500
   <DetectAngle>k__BackingField: 360
-  <DetectRadius>k__BackingField: 50
+  <DetectRadius>k__BackingField: 500

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0602d3952530a924eb24273b696afc6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 50ede5bb430f86f45b7036f0cd6e31b0, type: 3}
   m_Name: Projectile Init Config
   m_EditorClassIdentifier: 
-  <ProjectilePrefab>k__BackingField: {fileID: 8290243430021002141, guid: 331a4f9f3a2dd924fb23821a9ebe599c,
+  <ProjectilePrefab>k__BackingField: {fileID: 871831007005086464, guid: 331a4f9f3a2dd924fb23821a9ebe599c,
     type: 3}
   <Speed>k__BackingField: 30

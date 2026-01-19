@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 3}
   <PlayerView>k__BackingField: {fileID: 7353291827002845585, guid: 0f2f71e2733bd8c41a2eeac20b7daa8c,
     type: 3}
+  <GameLostView>k__BackingField: {fileID: 3736822234769517723, guid: 6d5467ae4a0fc944b97e99a23cbd43d4,
+    type: 3}
