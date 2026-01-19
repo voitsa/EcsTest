@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78908a34a602ec147ba40ea50da31e92, type: 3}
+  m_Name: Weapon Init Config
+  m_EditorClassIdentifier: 
+  <ProjectileInitConfig>k__BackingField: {fileID: 11400000, guid: 4b50147f988cda84da7724ad4ed6745e,
+    type: 2}
+  <WeaponActor>k__BackingField: {fileID: 3812067570250218894, guid: a651907f6fb5b2045a7c7760dde27eda,
+    type: 3}
+  <ShotDelay>k__BackingField: 1
+  <DamageValue>k__BackingField: 25

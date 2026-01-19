@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358d7590ee27e42489faa71273463312, type: 3}
+  m_Name: Enemy Unit Init Config
+  m_EditorClassIdentifier: 
+  <UnitPrefab>k__BackingField: {fileID: 2456265927645941771, guid: e183c468c5d5744409904d904e765203,
+    type: 3}
+  <DefaultSpeed>k__BackingField: 7
+  <HealthValue>k__BackingField: 100
