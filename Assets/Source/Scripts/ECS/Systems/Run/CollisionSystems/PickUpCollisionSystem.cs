@@ -19,6 +19,7 @@ namespace ECS.Systems
                 {
                     ref var entity = ref _filter.GetEntity(index);
                     entity.Get<DestructionEventComponent>();
+                    entity.Del<CollisionEnterComponent>();
                 }
             }
         }

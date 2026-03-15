@@ -84,13 +84,35 @@ namespace ECS
 
         private void SetGameControlSystems()
         {
+            AddGameStateSystems();
+        }
+
+        private void SetFixedUpdateSystems()
+        {
+            AddMovementSystems();
+            AddTrackingSystems();
+            AddWeaponSystems();
+            AddCollisionSystems();
+            AddPickUpSystems();
+            AddHealthSystems();
+            AddDestructionSystems();
+        }
+
+        private void SetUpdateSystems()
+        {
+            AddInitAndSpawnSystems();
+            AddRealtimeGameplaySystems();
+        }
+
+        private void AddGameStateSystems()
+        {
             _gameControlSystems.Add(new GameLostSystem());
             _gameControlSystems.Add(new GameLostViewSystem());
             _gameControlSystems.Add(new GameDestructionSystem());
             _gameControlSystems.Add(new GameRestartSystem());
         }
 
-        private void SetFixedUpdateSystems()
+        private void AddMovementSystems()
         {
             _fixedUpdateSystems.Add(new PlayerMoveSystem());
             _fixedUpdateSystems.Add(new PlayerRotateSystem());
@@ -100,15 +122,39 @@ namespace ECS
             _fixedUpdateSystems.Add(new FollowMoveSystem());
             _fixedUpdateSystems.Add(new FollowRotateSystem());
             _fixedUpdateSystems.Add(new RandomTurretRotationSystem());
+        }
+
+        private void AddTrackingSystems()
+        {
             _fixedUpdateSystems.Add(new TrackingFollowSystem());
             _fixedUpdateSystems.Add(new TrackingSystem());
+        }
+
+        private void AddWeaponSystems()
+        {
             _fixedUpdateSystems.Add(new ShootingSystem());
+        }
+
+        private void AddCollisionSystems()
+        {
             _fixedUpdateSystems.Add(new CollisionDamageSystem());
             _fixedUpdateSystems.Add(new ScorePickUpCollisionSystem());
             _fixedUpdateSystems.Add(new PickUpCollisionSystem());
+        }
+
+        private void AddPickUpSystems()
+        {
             _fixedUpdateSystems.Add(new PickUpViewSystem());
+        }
+
+        private void AddHealthSystems()
+        {
             _fixedUpdateSystems.Add(new HealthDamageSystem());
             _fixedUpdateSystems.Add(new HealthViewSystem());
+        }
+
+        private void AddDestructionSystems()
+        {
             _fixedUpdateSystems.Add(new ProjectileCollisionSystem());
             _fixedUpdateSystems.Add(new DestructionPickUpSpawnSystem(_world, _gameData.PickUpsInitConfig));
             _fixedUpdateSystems.Add(new CollisionComponentDestructionSystem());
@@ -116,9 +162,13 @@ namespace ECS
             _fixedUpdateSystems.Add(new DestroySystem());
         }
 
-        private void SetUpdateSystems()
+        private void AddInitAndSpawnSystems()
         {
             _updateSystems.Add(_gameInitSystem);
+        }
+
+        private void AddRealtimeGameplaySystems()
+        {
             _updateSystems.Add(new DetectionSystem());
             _updateSystems.Add(new AutofireWeaponSystem());
             _updateSystems.Add(new RechargingSystem());
