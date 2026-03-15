@@ -6,13 +6,18 @@ namespace ECS.Systems
 {
     public class RotationInputSystem : IEcsRunSystem
     {
+        private const float MinScreenNdc = -1f;
+        private const float MaxScreenNdc = 1f;
+
         private readonly EcsFilter<RotationInputEventComponent> _filter;
 
         public void Run()
         {
             var mousePosition = Input.mousePosition;
-            var horizontal = (mousePosition.x / Screen.width) * 2 - 1;
-            var vertical = (mousePosition.y / Screen.height) * 2 - 1;
+            var normalizedX = mousePosition.x / Screen.width;
+            var normalizedY = mousePosition.y / Screen.height;
+            var horizontal = Mathf.Lerp(MinScreenNdc, MaxScreenNdc, normalizedX);
+            var vertical = Mathf.Lerp(MinScreenNdc, MaxScreenNdc, normalizedY);
 
             foreach (var index in _filter)
             {

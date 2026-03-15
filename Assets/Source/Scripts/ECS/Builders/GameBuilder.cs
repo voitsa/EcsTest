@@ -1,3 +1,4 @@
+using CompositeRoot;
 using ECS.Components;
 using ECS.EntityActors;
 using Leopotam.Ecs;
@@ -11,13 +12,13 @@ namespace ECS.Builders
         {
         }
 
-        public void Build(GameActor actorPrefab, Loader loader)
+        public void Build(GameActor actorPrefab, IGameState gameState)
         {
             var entity = _world.NewEntity();
             var actor = Object.Instantiate(actorPrefab);
 
             ref var gameComponent = ref entity.Get<GameComponent>();
-            gameComponent.loader = loader;
+            gameComponent.gameState = gameState;
 
             ref var destructionComponent = ref entity.Get<DestructionComponent>();
             destructionComponent.destroyObject = actor.gameObject;

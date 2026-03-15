@@ -15,7 +15,7 @@ namespace ECS.Systems.GameSystems
                 entity.Del<GameLostEventComponent>();
 
                 ref var gameComponent = ref _filter.Get1(index);
-                gameComponent.loader.Stop();
+                gameComponent.gameState.StopGame();
             }
         }
     }

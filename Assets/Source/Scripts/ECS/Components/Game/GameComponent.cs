@@ -1,7 +1,9 @@
+using CompositeRoot;
+
 namespace ECS.Components
 {
     public struct GameComponent
     {
-        public Loader loader;
+        public IGameState gameState;
     }
 }

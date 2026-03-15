@@ -23,8 +23,8 @@ namespace ECS.Builders
             PlayerView _playerView = Object.Instantiate(_playerViewPrefab);
             _playerView.HealthView.Init(entity.Get<HealthComponent>().maxValue);
 
-            ref var cameraComponent = ref entity.Get<CameraComponent>();
-            cameraComponent.camera = Camera.main;
+            var cameraFollowService = Object.FindObjectOfType<CameraFollowService>();
+            cameraFollowService?.Init(actor.transform, Camera.main);
 
             ref var targetableComponent = ref entity.Get<TargetableComponent>();
             targetableComponent.transform = actor.transform;

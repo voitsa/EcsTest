@@ -1,3 +1,4 @@
+using CompositeRoot;
 using ECS.Data;
 using ECS.Systems;
 using ECS.Systems.GameSystems;
@@ -14,7 +15,10 @@ namespace ECS
         private EcsSystems _fixedUpdateSystems;
         private EcsSystems _gameControlSystems;
         private GameInitSystem _gameInitSystem;
+        private EnemySpawnSystem _enemySpawnSystem;
         private GameData _gameData;
+        private IGameState _gameState;
+        private DiContainer _container;
 
         private void Start()
         {
@@ -39,9 +43,11 @@ namespace ECS
         }
 
         [Inject]
-        public void Construct(GameData gameData)
+        public void Construct(GameData gameData, IGameState gameState, DiContainer container)
         {
             _gameData = gameData;
+            _gameState = gameState;
+            _container = container;
             Init();
         }
 
@@ -69,7 +75,8 @@ namespace ECS
             _gameControlSystems = new EcsSystems(_world);
             _updateSystems = new EcsSystems(_world);
             _fixedUpdateSystems = new EcsSystems(_world);
-            _gameInitSystem = new GameInitSystem(this, _gameData, _world);
+            _gameInitSystem = _container.Instantiate<GameInitSystem>(new object[] { this, _world });
+            _enemySpawnSystem = _container.Instantiate<EnemySpawnSystem>(new object[] { _world });
         }
 
         private void SetSystems()
@@ -165,6 +172,7 @@ namespace ECS
         private void AddInitAndSpawnSystems()
         {
             _updateSystems.Add(_gameInitSystem);
+            _updateSystems.Add(_enemySpawnSystem);
         }
 
         private void AddRealtimeGameplaySystems()
@@ -172,7 +180,6 @@ namespace ECS
             _updateSystems.Add(new DetectionSystem());
             _updateSystems.Add(new AutofireWeaponSystem());
             _updateSystems.Add(new RechargingSystem());
-            _updateSystems.Add(new CameraFollowSystem());
             _updateSystems.Add(new PlayerFollowDamageSystem());
         }
     }

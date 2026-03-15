@@ -9,8 +9,8 @@ namespace ECS.Systems
     public class DestructionPickUpSpawnSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PickUpSpawnerTagComponent, DestructionEventComponent> _filter;
-        private readonly float _minPercentProbability = 0f;
-        private readonly float _maxPercentProbability = 101f;
+        private const float MinPercentProbability = 0f;
+        private const float MaxPercentProbability = 100f;
         private readonly PickUpBuilder _pickUpBuilder;
         private readonly PickUpsInitConfig _config;
         private readonly float _probability;
@@ -26,7 +26,7 @@ namespace ECS.Systems
         {
             foreach (var index in _filter)
             {
-                if (Random.Range(_minPercentProbability, _maxPercentProbability) > _probability)
+                if (Random.Range(MinPercentProbability, MaxPercentProbability) > _probability)
                     continue;
 
                 ref var pickUpSpawnTagComponent = ref _filter.Get1(index);

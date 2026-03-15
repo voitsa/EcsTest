@@ -6,30 +6,16 @@ namespace ECS.Systems
 {
     public class MoveInputSystem : IEcsRunSystem
     {
-        private const KeyCode UpKey = KeyCode.W;
-        private const KeyCode DownKey = KeyCode.S;
-        private const KeyCode LeftKey = KeyCode.A;
-        private const KeyCode RightKey = KeyCode.D;
-
         private readonly EcsFilter<MoveInputEventComponent> _filter;
 
         public void Run()
         {
-            Vector2 direction = Vector2.zero;
+            var horizontal = Input.GetAxisRaw("Horizontal");
+            var vertical = Input.GetAxisRaw("Vertical");
+            var direction = new Vector2(horizontal, vertical);
 
-            if(Input.GetKey(UpKey))
-                direction += Vector2.up;
-
-            if(Input.GetKey(DownKey))
-                direction += Vector2.down;
-
-            if(Input.GetKey(LeftKey))
-                direction += Vector2.left;
-
-            if(Input.GetKey(RightKey))
-                direction += Vector2.right;
-
-            direction = direction.normalized;
+            if (direction.sqrMagnitude > 1f)
+                direction.Normalize();
 
             foreach (var index in _filter)
             {

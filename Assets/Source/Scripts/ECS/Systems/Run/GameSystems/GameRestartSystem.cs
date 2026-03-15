@@ -24,7 +24,7 @@ namespace ECS.Systems.GameSystems
                 }
 
                 ref var gameComponent = ref _filter.Get1(index);
-                gameComponent.loader.Restart();
+                gameComponent.gameState.RestartGame();
             }
         }
     }

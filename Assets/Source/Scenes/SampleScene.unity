@@ -829,6 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: d72f5d8eecb9a254fa540cef5c84e037, type: 2}
+  _loader: {fileID: 104450633}
 --- !u!114 &1158527756
 MonoBehaviour:
   m_ObjectHideFlags: 0

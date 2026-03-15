@@ -1,3 +1,4 @@
+using CompositeRoot;
 using ECS.Builders;
 using ECS.Data;
 using ECS.EntityActors;
@@ -7,52 +8,28 @@ using Utility;
 
 namespace ECS.Systems
 {
-    public class GameInitSystem : IEcsInitSystem, IEcsRunSystem
+    public class GameInitSystem : IEcsInitSystem
     {
         private readonly EcsWorld _world;
         private readonly Loader _loader;
         private readonly GameData _gameData;
-        private readonly float _enemySpawnDelay;
+        private readonly IGameState _gameState;
 
         private GameBuilder _gameBuilder;
-        private EnemyBuilder _enemyBuilder;
         private UnitActor _playerActor;
-        private Camera _camera;
-        private float _timePassed;
 
-        public GameInitSystem(Loader loader, GameData gameData, EcsWorld world)
+        public GameInitSystem(Loader loader, EcsWorld world, GameData gameData, IGameState gameState)
         {
             _loader = loader;
-            _gameData = gameData;
             _world = world;
-            _enemySpawnDelay = gameData.EnemyData.SpawnDelay;
+            _gameData = gameData;
+            _gameState = gameState;
         }
 
         public void Init()
         {
             _playerActor = CreatePlayer(new PlayerBuilder(_world, _gameData.UIData.PlayerView));
-            _enemyBuilder = new EnemyBuilder(_world, _gameData.EnemyData, _gameData.UIData.EnemyHealthView, _playerActor.Transform);
-            new GameBuilder(_world).Build(_gameData.GameActorPrefab, _loader);
-            _timePassed = 0f;
-            _camera = Camera.main;
-        }
-
-        public void Run()
-        {
-            _timePassed += Time.deltaTime;
-
-            if (_timePassed < _enemySpawnDelay)
-                return;
-
-            _timePassed = 0f;
-            var point = _camera.GetWorldBound().GetRandomPointOnBorder();
-            var position = new Vector3(point.x, 0f,  point.y);
-            SpawnEnemy(position);
-        }
-
-        private void SpawnEnemy(Vector3 position)
-        {
-            _enemyBuilder.BuildUnit(_gameData.EnemyData.EnemyInitConfig, position);
+            new GameBuilder(_world).Build(_gameData.GameActorPrefab, _gameState);
         }
 
         private UnitActor CreatePlayer(UnitBuilder builder)
