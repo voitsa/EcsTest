@@ -6,7 +6,7 @@ namespace ECS.Systems
 {
     public class CameraFollowSystem : IEcsRunSystem
     {
-        private EcsFilter<CameraComponent, TargetableComponent, PlayerTagComponent> _filter = null;
+        private readonly EcsFilter<CameraComponent, TargetableComponent, PlayerTagComponent> _filter;
 
         public void Run()
         {

@@ -5,7 +5,7 @@ namespace ECS.Systems
 {
     public class PickUpViewSystem : IEcsRunSystem
     {
-        private EcsFilter<ScoreComponent, ScoreViewComponent> _filter;
+        private readonly EcsFilter<ScoreComponent, ScoreViewComponent> _filter;
 
         public void Run()
         {

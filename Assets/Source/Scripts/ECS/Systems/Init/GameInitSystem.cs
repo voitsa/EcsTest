@@ -46,7 +46,6 @@ namespace ECS.Systems
 
             _timePassed = 0f;
             var point = _camera.GetWorldBound().GetRandomPointOnBorder();
-            Debug.Log(point);
             var position = new Vector3(point.x, 0f,  point.y);
             SpawnEnemy(position);
         }

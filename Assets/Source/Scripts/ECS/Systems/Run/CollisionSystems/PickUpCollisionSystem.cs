@@ -5,7 +5,7 @@ namespace ECS.Systems
 {
     public class PickUpCollisionSystem : IEcsRunSystem
     {
-        private EcsFilter<PickUpTagComponent, CollisionEnterComponent> _filter;
+        private readonly EcsFilter<PickUpTagComponent, CollisionEnterComponent> _filter;
 
         public void Run()
         {

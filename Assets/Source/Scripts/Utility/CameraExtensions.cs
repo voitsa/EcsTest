@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Utility
 {
-    public static class CameraExtentions
+    public static class CameraExtensions
     {
         public static Bound GetWorldBound(this Camera camera, float planeY = 0f)
         {

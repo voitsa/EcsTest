@@ -5,8 +5,8 @@ namespace ECS.Systems.GameSystems
 {
     public class GameLostSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<GameComponent> _filter = null;
-        private readonly EcsFilter<PlayerTagComponent> _playerFilter = null;
+        private readonly EcsFilter<GameComponent> _filter;
+        private readonly EcsFilter<PlayerTagComponent> _playerFilter;
 
         public void Run()
         {

@@ -5,7 +5,7 @@ namespace ECS.Systems
 {
     public class HealthViewSystem : IEcsRunSystem
     {
-        private EcsFilter<HealthComponent, HealthViewComponent> _filter;
+        private readonly EcsFilter<HealthComponent, HealthViewComponent> _filter;
 
         public void Run()
         {

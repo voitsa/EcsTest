@@ -7,10 +7,6 @@ namespace ECS.Systems
     {
         private readonly EcsFilter<WeaponComponent, ShotComponent> _filter;
 
-        public ShootingSystem(EcsWorld ecsWorld)
-        {
-        }
-
         public void Run()
         {
             foreach (var index in _filter)

@@ -6,7 +6,7 @@ namespace ECS.Systems
 {
     public class HealthDamageSystem : IEcsRunSystem
     {
-        private EcsFilter<HealthComponent, DamageReceiveComponent> _filter;
+        private readonly EcsFilter<HealthComponent, DamageReceiveComponent> _filter;
 
         public void Run()
         {

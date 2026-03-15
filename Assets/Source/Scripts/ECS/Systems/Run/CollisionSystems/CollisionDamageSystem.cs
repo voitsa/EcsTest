@@ -5,7 +5,7 @@ namespace ECS.Systems
 {
     public class CollisionDamageSystem : IEcsRunSystem
     {
-        private EcsFilter<DamageInflictComponent, CollisionEnterComponent, CollisionDamageAllowComponent> _filter;
+        private readonly EcsFilter<DamageInflictComponent, CollisionEnterComponent, CollisionDamageAllowComponent> _filter;
 
         public void Run()
         {

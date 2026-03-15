@@ -35,9 +35,9 @@ namespace ECS.Systems
                 var direction = targetPosition - selfPosition;
                 var angle = Vector2.Angle(selfForward, direction);
 
-                bool isWithingDistance = detectionComponent.radius >= distance;
-                bool isWithingAngle = Mathf.Abs(angle) <= detectionComponent.angle;
-                detectionComponent.isInRange = isWithingDistance && isWithingAngle;
+                bool isWithinDistance = detectionComponent.radius >= distance;
+                bool isWithinAngle = Mathf.Abs(angle) <= detectionComponent.angle;
+                detectionComponent.isInRange = isWithinDistance && isWithinAngle;
             }
         }
     }

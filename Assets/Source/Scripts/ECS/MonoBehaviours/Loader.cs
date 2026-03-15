@@ -102,7 +102,7 @@ namespace ECS
             _fixedUpdateSystems.Add(new RandomTurretRotationSystem());
             _fixedUpdateSystems.Add(new TrackingFollowSystem());
             _fixedUpdateSystems.Add(new TrackingSystem());
-            _fixedUpdateSystems.Add(new ShootingSystem(_world));
+            _fixedUpdateSystems.Add(new ShootingSystem());
             _fixedUpdateSystems.Add(new CollisionDamageSystem());
             _fixedUpdateSystems.Add(new ScorePickUpCollisionSystem());
             _fixedUpdateSystems.Add(new PickUpCollisionSystem());

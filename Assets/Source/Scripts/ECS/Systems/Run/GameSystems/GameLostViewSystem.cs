@@ -5,7 +5,7 @@ namespace ECS.Systems.GameSystems
 {
     public class GameLostViewSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<GameLostViewComponent, GameLostEventComponent> _filter = null;
+        private readonly EcsFilter<GameLostViewComponent, GameLostEventComponent> _filter;
 
         public void Run()
         {
