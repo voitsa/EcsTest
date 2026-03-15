@@ -26,8 +26,8 @@ namespace ECS.Systems
         {
             foreach (var index in _filter)
             {
-                if (Random.Range(_minPercentProbability, _maxPercentProbability) <= _probability)
-                     return;
+                if (Random.Range(_minPercentProbability, _maxPercentProbability) > _probability)
+                    continue;
 
                 ref var pickUpSpawnTagComponent = ref _filter.Get1(index);
 

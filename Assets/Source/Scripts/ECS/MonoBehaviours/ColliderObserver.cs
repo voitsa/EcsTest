@@ -18,7 +18,7 @@ namespace ECS
 
         private void OnCollisionEnter(Collision other)
         {
-            if (_ecsWorld == null && !EcsEntity.IsAlive())
+            if (_ecsWorld == null || !EcsEntity.IsAlive())
                 return;
 
             var otherObserver = other.gameObject.GetComponent<ColliderObserver>();
